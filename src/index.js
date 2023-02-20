@@ -30,6 +30,10 @@ app.get("/todos", (_, res) => {
   res.status(501).end();
 });
 
+app.get("/", (_, res) => {
+  res.sendFile("./public/index.html", { root: __dirname });
+});
+
 // Add GET request with path '/todos/overdue'
 
 // Add GET request with path '/todos/completed'
