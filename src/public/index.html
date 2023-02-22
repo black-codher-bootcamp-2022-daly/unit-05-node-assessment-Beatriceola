@@ -7,7 +7,61 @@
   </head>
   <body>
     <h1>Todo List API</h1>
-    <p>....</p>
+    <p>Welcome to Beatrice's Todo list API. Below you will find the available endpoints and their respective functions.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>URL</th>
+          <th>Description</th>
+          <th>Example URL</th>
+          <th>Request Body</th>
+          <th>Status Code</th>
+          <th>Response Body</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GET</td>
+          <td>/</td>
+          <td>Returns a static HTML file</td>
+          <td>http://localhost:8080/</td>
+          <td></td>
+          <td>200</td>
+          <td>HTML page</td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>/todos</td>
+          <td>Return all todos from the todos.json file</td>
+          <td>http://localhost:8080/todos</td>
+          <td></td>
+          <td>200</td>
+          <td>[{"id":"01507581-9d12-4c3a-bb60-19d539a11189","name":"Learn to use Adobe Photoshop","created":"2021-11-20T18:25:43.511Z","due":"2021-12-23T23:05:03.352Z","completed":false}, {...}, {...} ]</td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>/todos/:id</td>
+          <td>Return a specific todo with the corresponding id</td>
+          <td>http://localhost:8080/todos/01507581-9d12-4c3a-bb60-19d539a11189</td>
+          <td></td>
+          <td>200 or 404 if id not found</td>
+          <td>{"id":"01507581-9d12-4c3a-bb60-19d539a11189","name":"Learn to use Adobe Photoshop","created":"2021-11-20T18:25:43.511Z","due":"2021-12-23T23:05:03.352Z","completed":false}</td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>/todos/overdue</td>
+          <td>Return a list of overdue todos or an empty list if there are no overdue todos. Todos can be filtered based on their due date attribute</td>
+          <td>http://localhost:8080/todos/overdue</td>
+          <td></td>
+          <td>200</td>
+          <td>[] or [{todo1},{todo2},{...}]</td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>/todos/completed</td>
+          <td>Return a list of completed todos or an empty list, if no todos have been completed
   </body>
 </html>
 
