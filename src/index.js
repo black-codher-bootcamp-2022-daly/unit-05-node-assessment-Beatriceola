@@ -26,19 +26,14 @@ app.get("/", (_, res) => {
 app.get("/todos", (_, res) => {
   res.header("Content-Type", "application/json");
   res.sendFile(todoFilePath, { root: __dirname });
-
-  res.status(501).end();
+  
 });
 
 app.get("/", (_, res) => {
   res.sendFile("./public/index.html", { root: __dirname });
 });
 
-app.get("models/todos.json", (req, res) => {
-  res.json(todos);
-  res.header("Content-Type", "application/json");
-  res.sendFile(todoFilePath, { root: __dirname });
-});
+
 
 
 
