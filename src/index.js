@@ -44,6 +44,13 @@ app.get('/todos/overdue', (req, res) => {
   res.send(todos);
 });
 
+ 
+app.get("/todos/completed", (req, res) => {
+  const profile = getTodos()
+  const result = profile.filter((item) => item.completed == true);
+  res.send(result);
+});
+
 app.get("/todos/:id", (req, res) => {
   res.header("Content-Type", "application/json");
   const id = req.params.id;
@@ -57,7 +64,6 @@ app.get("/todos/:id", (req, res) => {
     res.send(todo);
   }
 });
- 
 
 
 // Add GET request with path '/todos/overdue'
