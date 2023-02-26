@@ -36,6 +36,14 @@ app.get("/", (_, res) => {
   res.sendFile("./public/index.html", { root: __dirname });
 });
 
+
+app.get('/todos/overdue', (req, res) => {
+  res.header("Content-Type", "application/json");
+  let todos = getTodos()
+  .filter((todo) => !todo.completed && Date.parse(todo.due) < new Date() )
+  res.send(todos);
+});
+
 app.get("/todos/:id", (req, res) => {
   res.header("Content-Type", "application/json");
   const id = req.params.id;
@@ -49,8 +57,6 @@ app.get("/todos/:id", (req, res) => {
     res.send(todo);
   }
 });
-
-
  
 
 
