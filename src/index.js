@@ -65,6 +65,28 @@ app.get("/todos/:id", (req, res) => {
   }
 });
 
+app.post('/todos', (req, res) => {
+  const todos = getTodos();
+  let newTodo = req.body;
+  if (newTodo.name && newTodo.due) {
+    newTodo.id = uuidv4()
+    newTodo.created = new Date().toISOString()
+    newTodo.completed = false
+    todos.push(newTodo.name + newTodo.due);
+    // create a new file with the array of todos
+    //save and update newTodo.json
+    const todosJSON = JSON.stringify(newTodo, null, 2);
+    fs.writeFileSync("newTodo.json", todosJSON);
+    //fs.writeFileSync("newTodo.json", JSON.stringify(newTodo))
+    res.setHeader("Content-Type", "application/json").status(201).send(newTodo);}
+    else{
+      res.status(400).send();
+    }
+});
+
+app.post("/todos/:id/complete", (req, res) => {
+  }
+});
 
 // Add GET request with path '/todos/overdue'
 
