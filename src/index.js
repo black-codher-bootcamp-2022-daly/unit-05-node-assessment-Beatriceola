@@ -6,6 +6,9 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const { v4: uuidv4 } = require("uuid");
 const todoFilePath = process.env.BASE_JSON_PATH;
+const getTodos = () => JSON.parse(
+  fs.readFileSync(path.join(__dirname, "models/todos.json"))
+);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -33,8 +36,22 @@ app.get("/", (_, res) => {
   res.sendFile("./public/index.html", { root: __dirname });
 });
 
+app.get("/todos/:id", (req, res) => {
+  res.header("Content-Type", "application/json");
+  const id = req.params.id;
+  const data = getTodos();
+
+  const todo = data.find((todo) => todo.id === id);
+
+  if (!todo) {
+    res.status(404).send("Todo not found");
+  } else {
+    res.send(todo);
+  }
+});
 
 
+ 
 
 
 // Add GET request with path '/todos/overdue'
